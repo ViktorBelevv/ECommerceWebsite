@@ -1,0 +1,25 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+	<div>
+        <img src="{{ product.image.url }}" alt="">
+    </div>
+
+    <div>
+        <h2>{{ product.name }}</h2>
+        <h3>{{ product.price }} BGN</h3>
+
+        <a href="#">Edit</a>
+        <a href="#">Delete</a>
+        <br>
+    </div>
+
+    <div>
+        <h2>Reviews:</h2>
+        {% if reviews %}
+
+        {% else %}
+            <h3>There are no reviews for this product.</h3>
+        {% endif %}
+    </div>
+{% endblock %}

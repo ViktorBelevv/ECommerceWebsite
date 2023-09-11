@@ -1,0 +1,23 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    {% if products %}
+        <div class="row">
+        {% for product in products %}
+            <div class="col-lg-2">
+                <img src="{{ product.image.url }}" alt="">
+                <h2>{{ product.name }}</h2>
+                <h3>{{ product.price }} BGN</h3>
+                <a href="{% url 'details of product' product.id %}">See More</a>
+            </div>
+        {% endfor %}
+        </div>
+        <br>
+        <br>
+        <a href="{% url 'create product' %}">Add Product</a>
+    {% else %}
+        <h1>There Are No Products</h1>
+        <br>
+        <a href="{% url 'create product' %}">Add Product</a>
+    {% endif %}
+{% endblock %}
