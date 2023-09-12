@@ -5,7 +5,7 @@
         <div class="row">
         {% for product in products %}
             <div class="col-lg-2 text-center">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem; height: 25rem;">
                     <img src="{{ product.image.url }}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h2 class="card-title">{{ product.name }}</h2>
@@ -21,13 +21,7 @@
                 </div>
             </div>
         {% endfor %}
-        </div>
-        <br>
-        <br>
-        <a class="btn btn-success" href="{% url 'create product' %}">Add Product</a>
     {% else %}
         <h1>There Are No Products</h1>
-        <br>
-        <a class="btn btn-success" href="{% url 'create product' %}">Add Product</a>
     {% endif %}
 {% endblock %}

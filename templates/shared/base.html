@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    <header>
+        <a class="btn btn-success" href="{% url 'create product' %}">Add Product</a>
+        <a class="btn btn-success" href="{% url 'list products' %}">See All Products</a>
+    </header>
+
     {% block content %}
 
     {% endblock %}

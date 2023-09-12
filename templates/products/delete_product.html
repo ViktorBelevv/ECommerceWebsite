@@ -6,9 +6,10 @@
         <form method="post">
             {% csrf_token %}
             {{ form }}
-            <button>Confirm</button>
-            <a href="{% url 'details of product' product.id %}"><button>Cancel</button></a>
+            <button class="btn btn-success">Confirm</button>
+
         </form>
+        <a class="btn btn-danger" href="{% url 'details of product' product.id %}">Cancel</a>
 
     </div>
 {% endblock %}

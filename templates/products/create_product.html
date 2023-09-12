@@ -1,12 +1,10 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <form method="post" action="{% url 'create product' %}" enctype="multipart/form-data">
+    <form method="post" action="{% url 'create product' %}" class="furniture-form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <br>
-        <button>Add</button>
+        <button class="btn btn-primary">Add</button>
     </form>
-
-    <a href="{% url 'list products' %}">See All Products</a>
 {% endblock %}

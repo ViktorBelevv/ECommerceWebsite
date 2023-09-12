@@ -10,8 +10,8 @@
             <h3>{{ product.price }} BGN</h3>
         {% endif %}
 
-        <a href="{% url 'edit product' product.id %}">Edit</a>
-        <a href="{% url 'delete product' product.id %}">Delete</a>
+        <a class="btn btn-primary" href="{% url 'edit product' product.id %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'delete product' product.id %}">Delete</a>
         <br>
     </div>
 
@@ -27,6 +27,4 @@
             <br>
         {% endif %}
     </div>
-
-    <a href="{% url 'list products' %}">See All Products</a>
 {% endblock %}
