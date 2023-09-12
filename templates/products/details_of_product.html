@@ -1,25 +1,32 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-	<div>
+    <div class="col-lg-2 text-center">
         <img src="{{ product.image.url }}" alt="">
-    </div>
-
-    <div>
         <h2>{{ product.name }}</h2>
-        <h3>{{ product.price }} BGN</h3>
+        {% if product.price.is_integer %}
+            <h3>{{ product.price }}0 BGN</h3>
+        {% else %}
+            <h3>{{ product.price }} BGN</h3>
+        {% endif %}
 
-        <a href="#">Edit</a>
-        <a href="#">Delete</a>
+        <a href="{% url 'edit product' product.id %}">Edit</a>
+        <a href="{% url 'delete product' product.id %}">Delete</a>
         <br>
     </div>
 
-    <div>
-        <h2>Reviews:</h2>
-        {% if reviews %}
 
+    <div class="col-lg-2 text-center">
+        <h2>Reviews:</h2>
+    </div>
+    <div>
+        {% if reviews %}
+            <br>
         {% else %}
-            <h3>There are no reviews for this product.</h3>
+            <h4>No reviews for this product.</h4>
+            <br>
         {% endif %}
     </div>
+
+    <a href="{% url 'list products' %}">See All Products</a>
 {% endblock %}

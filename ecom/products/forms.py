@@ -11,3 +11,7 @@ class ProductForm(forms.ModelForm):
 
 class CreateProductForm(ProductForm):
     pass
+
+
+class EditProductForm(ProductForm):
+    pass
