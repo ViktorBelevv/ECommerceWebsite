@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from ecom.products.forms import CreateProductForm, EditProductForm
-from ecom.products.models import Product
+from ecom.products.forms import CreateProductForm, EditProductForm, ReviewForm
+from ecom.products.models import Product, Review
 
 
 def list_products(request):
@@ -30,8 +30,15 @@ def create_product(request):
 
 def details_of_product(request, pk):
     product = Product.objects.get(pk=pk)
+
     context = {
         'product': product,
+        'reviews': product.review_set.all(),
+        'review_form': ReviewForm(
+            initial={
+                'product_pk': pk,
+            }
+        )
     }
     return render(request, 'products/details_of_product.html', context)
 
@@ -67,3 +74,11 @@ def delete_product(request, pk):
         }
 
         return render(request, 'products/delete_product.html', context)
+
+
+def review_product(request, pk):
+    review_form = ReviewForm(request.POST)
+    if review_form.is_valid():
+        review_form.save()
+    return redirect('details of product', pk)
+

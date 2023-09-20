@@ -15,16 +15,36 @@
         <br>
     </div>
 
-
     <div class="col-lg-2 text-center">
         <h2>Reviews:</h2>
     </div>
+
     <div>
         {% if reviews %}
-            <br>
+            {% for review in reviews %}:
+                <div class="box">
+                    {% if review.text %}
+                        <h4>Someone: {{ review.text }} | Rating: {{ review.rating }}/5</h4>
+                    {% else %}
+                        <h4>Someone's Rating: {{ review.rating }}/5</h4>
+                    {% endif %}
+                </div>
+            {% endfor %}
         {% else %}
             <h4>No reviews for this product.</h4>
             <br>
         {% endif %}
+    </div>
+
+    <div class="box">
+        <div class="col-lg-2 text-center">
+            <h2>Add a Review:</h2>
+        </div>
+
+        <form method="post" action="{% url 'review product' product.id %}" class="form-control">
+            {% csrf_token %}
+            {{ review_form }}
+            <button type="submit" class="btn btn-primary">Add Review</button>
+        </form>
     </div>
 {% endblock %}
