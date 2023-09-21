@@ -29,7 +29,7 @@ class ReviewForm(BoostrapFormMixin, forms.ModelForm):
 
     def save(self, commit=True):
         product_pk = self.cleaned_data['product_pk']
-        product = Product.objects.get(product_pk)
+        product = Product.objects.get(pk=product_pk)
         review = Review(
             text=self.cleaned_data['text'],
             rating=self.cleaned_data['rating'],

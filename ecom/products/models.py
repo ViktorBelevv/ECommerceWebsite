@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -10,24 +11,13 @@ class Product(models.Model):
 
 
 class Review(models.Model):
-    CHOICE_1 = '1'
-    CHOICE_2 = '2'
-    CHOICE_3 = '3'
-    CHOICE_4 = '4'
-    CHOICE_5 = '5'
-
-    CHOICES = (
-        (1, CHOICE_1),
-        (2, CHOICE_2),
-        (3, CHOICE_3),
-        (4, CHOICE_4),
-        (5, CHOICE_5),
-    )
-
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     rating = models.CharField(
         max_length=100,
-        choices=CHOICES,
+        validators=[
+            MinValueValidator('1'),
+            MaxValueValidator('5'),
+        ]
     )
 
     text = models.TextField(
