@@ -1,0 +1,10 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <form method="post" action="{% url 'login user' %}" class="furniture-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.errors }}
+        <button class="btn btn-success">Login</button>
+    </form>
+{% endblock %}

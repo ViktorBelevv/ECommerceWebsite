@@ -10,8 +10,10 @@
             <h3>{{ product.price }} BGN</h3>
         {% endif %}
 
-        <a class="btn btn-primary" href="{% url 'edit product' product.id %}">Edit</a>
-        <a class="btn btn-danger" href="{% url 'delete product' product.id %}">Delete</a>
+        {% if is_owner %}
+            <a class="btn btn-primary" href="{% url 'edit product' product.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'delete product' product.id %}">Delete</a>
+        {% endif %}
         <br>
     </div>
 
@@ -24,9 +26,9 @@
             {% for review in reviews %}:
                 <div class="box">
                     {% if review.text %}
-                        <h4>Someone: {{ review.text }} | Rating: {{ review.rating }}/5</h4>
+                        <h4>{{ review.name }}: {{ review.text }} | Rating: {{ review.rating }}/5</h4>
                     {% else %}
-                        <h4>Someone's Rating: {{ review.rating }}/5</h4>
+                        <h4>{{ review.name }}'s Rating: {{ review.rating }}/5</h4>
                     {% endif %}
                 </div>
             {% endfor %}
@@ -36,15 +38,17 @@
         {% endif %}
     </div>
 
-    <div class="box">
-        <div class="col-lg-2 text-center">
-            <h2>Add a Review:</h2>
-        </div>
+    {% if not is_owner %}
+        <div class="box">
+            <div class="col-lg-2 text-center">
+                <h2>Add a Review:</h2>
+            </div>
 
-        <form method="post" action="{% url 'review product' product.id %}" class="form-control">
-            {% csrf_token %}
-            {{ review_form }}
-            <button type="submit" class="btn btn-primary">Add Review</button>
-        </form>
+            <form method="post" action="{% url 'review product' product.id %}" class="form-control">
+                {% csrf_token %}
+                {{ review_form }}
+                <button type="submit" class="btn btn-primary">Add Review</button>
+            </form>
     </div>
+    {% endif %}
 {% endblock %}

@@ -31,6 +31,7 @@ class ReviewForm(BoostrapFormMixin, forms.ModelForm):
         product_pk = self.cleaned_data['product_pk']
         product = Product.objects.get(pk=product_pk)
         review = Review(
+            name=self.cleaned_data['name'],
             text=self.cleaned_data['text'],
             rating=self.cleaned_data['rating'],
             product=product,
