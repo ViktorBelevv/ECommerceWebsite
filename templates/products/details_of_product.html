@@ -44,7 +44,7 @@
                 <h2>Add a Review:</h2>
             </div>
 
-            <form method="post" action="{% url 'review product' product.id %}" class="form-control">
+            <form method="post" action="{% url 'review product' product.id %}" class="form-control" style="width: 300px">
                 {% csrf_token %}
                 {{ review_form }}
                 <button type="submit" class="btn btn-primary">Add Review</button>
