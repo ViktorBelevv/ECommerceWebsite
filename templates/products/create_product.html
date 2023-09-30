@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <form method="post" action="{% url 'create product' %}" class="furniture-form" enctype="multipart/form-data">
+    <form method="post" action="{% url 'create product' %}" class="furniture-form" enctype="multipart/form-data" style="width: 300px">
         {% csrf_token %}
         {{ form }}
         <br>

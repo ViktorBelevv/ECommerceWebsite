@@ -7,7 +7,7 @@ from ecom.products.models import Product, Review
 class ProductForm(BoostrapFormMixin, forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('user', )
 
 
 class CreateProductForm(ProductForm):
